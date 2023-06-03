@@ -24,4 +24,4 @@ const movieRatingSchema = new mongoose.Schema({
     
 })
 
-module.exports = mongoose.model('movieRatingModel', movieRatingSchema);
+module.exports = mongoose.model('movieRatingsModel', movieRatingSchema);

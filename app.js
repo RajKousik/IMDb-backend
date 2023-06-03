@@ -3,13 +3,14 @@ require('dotenv').config();
 const express = require('express')
 const app = express()
 
-const PORT = 4500
+const PORT = 3500
 
 const mongoose = require('mongoose') 
 
 
 const movieRating = require('./routes/movieRating.js')
 
+app.use(express.json())
 
 //DB connection
 
@@ -23,11 +24,7 @@ db.once('open', ()=>{
     console.log('Connection Established to Database');
 })
 
-
-
-
-
-
+//
 
 
 console.log('From app.js');
