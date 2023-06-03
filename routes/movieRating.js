@@ -15,7 +15,7 @@ router.get('/', async(req,res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({message : err.message});
     }
 })
@@ -37,7 +37,7 @@ router.post('/', async (req, res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({message : err.message});
     }
 
@@ -50,7 +50,7 @@ router.get('/:id', getMovie,(req, res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({message : err.message});
     }
 
@@ -86,10 +86,21 @@ router.patch('/:id', getMovie, async(req, res)=>{
     }
     catch(err)
     {
-        console.log(err);
+        // console.log(err);
         res.status(400).json({message : err.message});
     }
 
+})
+
+router.delete('/:id', getMovie, async (req, res)=>{
+    try{
+        await res.movie.deleteOne();
+        res.status(200).json({message : `Deleted Movie : ${res.movie.name}`});
+    }
+    catch(err)
+    {
+        res.status(400).json({message: error.message})
+    }
 })
 
 
@@ -109,7 +120,7 @@ async function getMovie(req, res, next){
     }
     catch(err)
     {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({message : err.message});
     }
     res.movie = movie;
