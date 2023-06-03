@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const app = express()
 
@@ -5,7 +7,27 @@ const PORT = 4500
 
 const mongoose = require('mongoose') 
 
+
 const movieRating = require('./routes/movieRating.js')
+
+
+//DB connection
+
+mongoose.connect(process.env.DB_URL);
+
+const db = mongoose.connection
+
+db.on('error', errorMsg => console.log(errorMsg));
+
+db.once('open', ()=>{
+    console.log('Connection Established to Database');
+})
+
+
+
+
+
+
 
 
 console.log('From app.js');
