@@ -43,6 +43,54 @@ router.post('/', async (req, res)=>{
 
 })
 
+router.get('/:id', getMovie,(req, res)=>{
+
+    try{   
+        res.status(200).json(res.movie);
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({message : err.message});
+    }
+
+})
+
+router.patch('/:id', getMovie, async(req, res)=>{
+
+    if(req.body.name != null)
+    {
+        res.movie.name = req.body.name;
+    }
+    if(req.body.genre != null)
+    {
+        res.movie.genre = req.body.genre;
+    }
+    if(req.body.language != null)
+    {
+        res.movie.language = req.body.language;
+    }
+    if(req.body.releasedYear != null)
+    {
+        res.movie.releasedYear = req.body.releasedYear;
+    }
+    if(req.body.rating != null)
+    {
+        res.movie.rating = req.body.rating;
+    }
+
+    try
+    {
+        const updatedMovie = await res.movie.save();
+        res.status(200).json(updatedMovie);
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(400).json({message : err.message});
+    }
+
+})
 
 
 
